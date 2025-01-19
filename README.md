@@ -8,6 +8,7 @@
 ## [Project Page](https://drivedreamer4d.github.io/) | [Paper]()
 
 # News
+- **[2025/1/19]** Release of NTA-IoU and NTL-IoU Code.
 - **[2024/10/17]** Repository Initialization.
 
 # Abstract 
@@ -33,14 +34,29 @@ pip install ./submodules/nvdiffrast
 pip install ./submodules/smplx
 ```
 # Prepare
-Download data ([Baidu](https://pan.baidu.com/s/18huHwBVOu0T796NXLt1LCA?pwd=5zpc), [Google](https://drive.google.com/drive/folders/1gVrs4FbMUwb40L-4dPvM7V8nzKBWza2Z?usp=sharing))  and extract it to the ./data/waymo/ directory.
+**NOTE** To facilitate the calculation of metrics, we have updated our data processing code. If you previously downloaded our dataset, you can simply download the label.pkl file from the provided link and place it in the ./data/waymo/processed/validation/005 directory. Additionally, if you previously downloaded our checkpoint, please move the checkpoint and config file to the ./exp/pvg_example/005 directory. 
 
-Download checkpoint ([Baidu](https://pan.baidu.com/s/18huHwBVOu0T796NXLt1LCA?pwd=5zpc), [Google](https://drive.google.com/drive/folders/1gVrs4FbMUwb40L-4dPvM7V8nzKBWza2Z?usp=sharing)) to ./exp/pvg_example
+Download data ([Baidu](https://pan.baidu.com/share/init?surl=8butQ86ZNkvjio8vK_1YZA&pwd=3yiv), [Google](https://drive.google.com/drive/folders/19TIK5UNSjVLOLfQWjfDA51N3x3a0voWR?usp=sharing))  and extract it to the ./data/waymo/ directory.
 
+Download checkpoint ([Baidu](https://pan.baidu.com/share/init?surl=RDMQEHSMJPjJDiokK-f4og&pwd=2kvi), [Google](https://drive.google.com/drive/folders/1gHjOd6y2Pd7hk10bzMjE99kgWOB4T2lu?usp=sharing)) to ./exp/pvg_example/005
+
+Furthermore, if you want to generate the label.pkl of other scenarios, you can do so by running the script located at datasets/prepare_data_label.py.
+```
+python datasets/prepare_data_label.py --data_root /PATH/TO/YOUR/WAYMO/SOURCE/DATA --scene_ids specific_scene_ids 
+```
 
 # Render
 ```
 python tool/eval.py --resume_from ./exp/pvg_example/checkpoint_final.pth
+```
+
+# Metrics
+```
+# calculate NTL-IoU
+python utils/metrics/NTL-IoU/get_NTL-IoU.py --model_path /PATH/TO/YOUR/TWINLITENET/MODEL --exp_name pvg_example --exp_root ./exp --scene_ids 005 --data_root ./data/waymo/processed/validation --save_root ./results
+
+# calculate NTA-IoU
+python utils/metrics/NTL-IoU/get_NTA-IoU.py --model_path /PATH/TO/YOUR/YOLO11/MODEL --exp_name pvg_example --exp_root ./exp --scene_ids 005 --data_root ./data/waymo/processed/validation --save_root ./results
 ```
 
 # Scenario Selection
