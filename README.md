@@ -5,7 +5,7 @@
 </div>
 
  
-## [Project Page](https://drivedreamer4d.github.io/) | [Paper]()
+## [Project Page](https://drivedreamer4d.github.io/) | [Paper](https://arxiv.org/abs/2410.13571)
 
 # News
 - **[2025/1/19]** Release of NTA-IoU and NTL-IoU Code.
