@@ -1,0 +1,43 @@
+
+######################################## windows, 5070TI, 配环境 ########################################
+cd D:\PythonProj\DriveDreamer4D
+conda create -n drivedreamer4d python=3.8
+conda activate drivedreamer4d
+conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install -r requirements.txt
+pip install -r requirements_ours.txt
+pip install ./submodules/gsplat-1.3.0
+pip install git+https://github.com/facebookresearch/pytorch3d.git
+pip install ./submodules/nvdiffrast
+pip install ./submodules/smplx
+
+conda remove -n drivedreamer4d --all
+
+# 检查pytorch版本
+import torch
+print(torch.__version__)            # 应该为 2.4.1
+print(torch.cuda.is_available())    # 检查 GPU 是否可用
+
+# 清除包缓存
+conda clean --packages
+
+# 清除 Tarball 缓存
+conda clean --tarballs
+
+# 清除所有缓存（推荐）
+conda clean --all
+
+# 清除 pip 缓存
+pip cache purge
+
+
+
+
+
+
+
+
+
+
+
+
