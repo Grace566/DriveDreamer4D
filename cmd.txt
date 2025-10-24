@@ -1,5 +1,6 @@
 
 ######################################## windows, 5070TI, 配环境 ########################################
+""" 5070TI的CUDA版本是12.8，与后续的版本冲突，先不配这个了"""
 cd D:\PythonProj\DriveDreamer4D
 conda create -n drivedreamer4d python=3.8
 conda activate drivedreamer4d
