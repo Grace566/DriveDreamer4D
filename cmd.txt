@@ -37,15 +37,43 @@ pip cache purge
 
 ######################################## wsl, 3090TI, 配环境 ########################################
 cd /mnt/f/PythonProject/DriveDreamer4D
-conda create -n drivedreamer4d python=3.8
+conda create -n drivedreamer4d python=3.8 -y
 conda activate drivedreamer4d
-conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.1 -c pytorch -c nvidia
+conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.1 -c pytorch -c nvidia -y
 pip install -r requirements.txt
-pip install -r requirements_ours.txt
-pip install ./submodules/gsplat-1.3.0
-pip install git+https://github.com/facebookresearch/pytorch3d.git
+pip install gsplat==1.3.0
+pip install pytorch3d
 pip install ./submodules/nvdiffrast
 pip install ./submodules/smplx
+conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=12.1 -c pytorch -c nvidia -y (再把pytorch版本改回来)
+
+# 设置PYTORCH_CUDA_ARCH_LIST 环境变量
+nano ~/.bashrc  # 如果你使用 Bash
+export PYTORCH_CUDA_ARCH_LIST="8.6" # 在文件末尾添加以下行
+保存并关闭文件 (Ctrl+S, Ctrl+X for nano)
+
+
+
+######################################## wsl, 3090TI, 运行 ########################################
+1. 环境
+cd /mnt/f/PythonProject/DriveDreamer4D
+conda activate drivedreamer4d
+2. eval
+MAX_JOBS="4" python tools/eval.py --resume_from ./exp/pvg_example/checkpoint_final.pth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
